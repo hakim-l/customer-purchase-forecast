@@ -112,28 +112,25 @@ class ValidationGenerator(Sequence):
 class InferenceDataGenerator(Sequence):
     def __init__(self, batch_size,df):
         super().__init__()
+        self.df = df
         self.batch_size = batch_size
-        self.test_df = df
         self.y_cols = 'target_array'
-        self.x_cols = self.test_df.drop(columns=[self.y_cols]).columns.to_list()
-        self.test_df = self.test_df.shape[0]
-        self.shuffle= True
+        self.x_cols = self.df.drop(columns=[self.y_cols]).columns.to_list()
+        self.shuffle= False
+        self.n= df.shape[0]
 
     def __len__(self):
         return math.ceil(self.n /self.batch_size)
 
-    def read_dataset(self):
-        return
-
     def __getitem__(self, index):
         start = index * self.batch_size
         end = min([start + self.batch_size, self.n])
-        batch_data = self.test_df.loc[index:end, :].reset_index(drop=True)
+        batch_data = self.df.loc[index:end, :].reset_index(drop=True)
 
         X = batch_data.loc[:, self.x_cols].copy()
         return tensorflow.convert_to_tensor(X.values)
 
     def on_epoch_end(self):
         if self.shuffle:
-            self.validation_df = self.validation_df.sample(frac=1).reset_index(drop=True)
+            self.df = self.df.sample(frac=1).reset_index(drop=True)
         return

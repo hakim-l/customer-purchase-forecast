@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html rel= stylesheet href="../static/css/base.css">
+{#<script src="../static/js/table.js"></script>#}
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+<style>
+
+    #divElement{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+}
+
+</style>
+</head>
+<body>
+<div>
+    <img src="../static/images/logo.gif" alt="Italian Trulli">
+</div>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
