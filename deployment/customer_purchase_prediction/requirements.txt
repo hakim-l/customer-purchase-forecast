@@ -1,0 +1,14 @@
+numpy
+pandas
+scikit-learn
+sdv
+tensorflow
+tensorflow_io
+python-dotenv
+django
+matplotlib
+seaborn
+fastparquet
+sqlalchemy
+pydash
+django-rest-framework
