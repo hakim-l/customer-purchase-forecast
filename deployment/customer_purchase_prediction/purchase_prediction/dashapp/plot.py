@@ -133,23 +133,7 @@ def make_plot(value):
                          on='product_id'
                          )
 
-    # fig = go.Figure(data=[go.Table(header={'values': predict_df.columns.to_list()},
-    #                          cells={'values': predict_df.T.values}
-    #                                )
-    #                       ]
-    #
-    #                 )
-
-    # fig.update_layout(#barmode='stack',
-    #                   title_text = 'Purchase Prediction',
-    #                   paper_bgcolor = 'rgba(0,0,0,0)',
-    #                   plot_bgcolor = 'rgba(0,0,0,0)',
-    #                   xaxis_title = 'Date',
-    #                   yaxis_title = 'Total_Daily_Cases'
-    #                   )
-
     return predict_df.loc[:,['customer_id','product_id','category','purchased_probability']].sort_values('purchased_probability',ascending=False)
-    # return customers, customer_interactions, purchase_history, product_details
 
 
 engine = sqlite3.connect(os.path.join(CURDIR,
@@ -158,12 +142,6 @@ engine = sqlite3.connect(os.path.join(CURDIR,
                          )
 app = DjangoDash(name='PurchasePrediction')
 customers = make_plot('all')  # where customer_id={customer}
-
-# html.Nav(
-#     html.Ul([
-#         html.Li(html.A("The link to Home", href="{% url 'PurchasePrediction:home' %}")),
-#     ]),
-# )
 
 # Configure app layout
 app.layout = html.Div([
@@ -206,7 +184,8 @@ app.layout = html.Div([
             ]
         )
     ],justify= 'center'
-    )
+    ),
+
 ]
 )
 
