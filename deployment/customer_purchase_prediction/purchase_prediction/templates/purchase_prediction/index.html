@@ -6,10 +6,12 @@
 {% block content %}
     {%load plotly_dash%}
     <h1>Historical Purchase</h1>
-    <div>
-    <div class="row">
+    <div class="product_historical_purchase_bar" style="width: 100%">
         {{ product_historical_purchase_bar | safe}}
     </div>
+
+    <div class="product_historical_uniquecustomer_bar" style="width: 100%">
+        {{ product_historical_uniquecustomer_bar | safe}}
     </div>
 
     <h1>Purchase Forecast</h1>
