@@ -10,7 +10,7 @@ from django.shortcuts import render
 from plotly import graph_objects as go
 
 def purchase_prediction_view(request):
-    def bar_plot():
+    def bar_n_purchase_plot():
         engine = sqlite3.connect(os.path.join(CURDIR,
                                               'db.sqlite3'
                                               )
@@ -53,28 +53,8 @@ def purchase_prediction_view(request):
         return plot_fig
 
 
-    def trial():
-        x=[1,2,3,4]
-        y=[40,50,60,70]
-
-        trace= go.Scatter(x=x,
-                          y=y
-                          )
-
-        layout={'title':'trial',
-                'xaxis':{'range':[0,6]},
-                'yaxis':{'range':[30,70]}}
-
-        fig= go.Figure(data=[trace],
-                       layout=layout
-                       )
-        plot_div= po(fig,
-                     output_type='div',
-                     include_plotlyjs=False
-                     )
-        return plot_div
     context={
-        'product_historical_purchase_bar': bar_plot()
+        'product_historical_purchase_bar': bar_n_purchase_plot()
     }
     return render(request=request,
                   template_name='purchase_prediction/index.html',
