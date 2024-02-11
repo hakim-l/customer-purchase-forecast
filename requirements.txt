@@ -10,3 +10,12 @@ matplotlib
 seaborn
 fastparquet
 sqlalchemy
+pydash
+dash
+django_plotly_dash
+channels
+daphne
+redis
+django-redis
+channels-redis
+dash-renderer
