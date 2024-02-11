@@ -16,6 +16,10 @@ sudo snap install docker
 docker pull redis:4
 docker run -p 6360:6379 -d redis
 ```
+### collect static files
+```
+python manage.py collectstatic
+```
 
 ### Run server
 ```
