@@ -7,9 +7,6 @@ from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 
 from pathlib import Path
-
-# os.chdir('../')
-
 CURDIR = Path(__file__).resolve().parent.parent.parent
 
 import plotly.graph_objects as go
@@ -136,12 +133,8 @@ def prepare_prediction_data(value):
     return predict_df.loc[:,['customer_id','product_id','category','purchased_probability']].sort_values('purchased_probability',ascending=False)
 
 
-engine = sqlite3.connect(os.path.join(CURDIR,
-                                      'db.sqlite3'
-                                      )
-                         )
-app = DjangoDash(name='PurchasePrediction')
 customers = prepare_prediction_data('all')  # where customer_id={customer}
+app = DjangoDash(name='PurchasePrediction')
 
 # Configure app layout
 app.layout = html.Div([
@@ -157,12 +150,8 @@ app.layout = html.Div([
                 ],
                     style={'width': '25%', 'margin': '0px auto','display': 'inline-block'}
                 ),
-            ])
-        ]
-        ),
-        dbc.Col(
-            [
-                dbc.Row([
+            ]),
+            dbc.Row([
                     html.Div([
                         # dcc.Graph(id = 'customer_plot',
                         #           # animate = True,
@@ -181,28 +170,17 @@ app.layout = html.Div([
                     )
                 ]
                 )
-            ]
-        )
+        ]
+        ),
     ],justify= 'center'
     ),
 ]
 )
 
-
-# @app.callback(
-#     Output('customer_plot', 'figure'),
-#     [Input('customer', 'value')]
-# )
 @app.callback(Output('tbl', 'data'),
               [Input('customer', 'value')]
               )
-def display_value(value):
-    """
-    This function returns figure object according to value input
-    Input: Value specified
-    Output: Figure object
-    """
-    # Get daily cases plot with input value
 
+def graph_callback_forecast_data(value):
     df = prepare_prediction_data(value)
     return df.to_dict(orient='records')
