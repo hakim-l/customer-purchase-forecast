@@ -102,7 +102,7 @@ def format_input():
     return df,product_details
 
 
-def make_plot(value):
+def prepare_prediction_data(value):
     # print(value)
     # customer= self.request.GET.get('q')
     df,product_details = format_input()
@@ -141,7 +141,7 @@ engine = sqlite3.connect(os.path.join(CURDIR,
                                       )
                          )
 app = DjangoDash(name='PurchasePrediction')
-customers = make_plot('all')  # where customer_id={customer}
+customers = prepare_prediction_data('all')  # where customer_id={customer}
 
 # Configure app layout
 app.layout = html.Div([
@@ -185,7 +185,6 @@ app.layout = html.Div([
         )
     ],justify= 'center'
     ),
-
 ]
 )
 
@@ -205,5 +204,5 @@ def display_value(value):
     """
     # Get daily cases plot with input value
 
-    df = make_plot(value)
+    df = prepare_prediction_data(value)
     return df.to_dict(orient='records')
