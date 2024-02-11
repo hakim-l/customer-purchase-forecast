@@ -125,7 +125,7 @@ def make_plot(value):
         y_predict = y_predict.loc[y_predict.customer_id == value, :].copy()
     predict_df = y_predict.melt(id_vars='customer_id', value_vars=y_predict.columns, var_name='product_id',
                                 value_name='purchased_probability')
-    predict_df.purchased_probability = predict_df.purchased_probability * 100
+    predict_df.purchased_probability = predict_df.purchased_probability
     product_details.product_id= product_details.product_id.astype(str)
 
     predict_df= pd.merge(predict_df,
@@ -148,7 +148,7 @@ def make_plot(value):
     #                   yaxis_title = 'Total_Daily_Cases'
     #                   )
 
-    return predict_df.loc[:,['customer_id','product_id','category','purchased_probability']]
+    return predict_df.loc[:,['customer_id','product_id','category','purchased_probability']].sort_values('purchased_probability',ascending=False)
     # return customers, customer_interactions, purchase_history, product_details
 
 
@@ -158,9 +158,7 @@ engine = sqlite3.connect(os.path.join(CURDIR,
                          )
 app = DjangoDash(name='PurchasePrediction')
 customers = make_plot('all')  # where customer_id={customer}
-customers = customers.sort_values('purchased_probability',
-                                  ascending=False
-                                  )
+
 # html.Nav(
 #     html.Ul([
 #         html.Li(html.A("The link to Home", href="{% url 'PurchasePrediction:home' %}")),
@@ -229,5 +227,4 @@ def display_value(value):
     # Get daily cases plot with input value
 
     df = make_plot(value)
-
     return df.to_dict(orient='records')

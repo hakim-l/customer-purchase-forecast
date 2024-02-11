@@ -12,3 +12,10 @@ fastparquet
 sqlalchemy
 pydash
 django-rest-framework
+django_plotly_dash
+channels
+daphne
+redis
+django-redis
+channels-redis
+gunicorn

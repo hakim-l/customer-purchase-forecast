@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'purchase_prediction.apps.PurchasePredictionConfig',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'channels',
-    'channels_redis'
+    'channels_redis',
 ]
 
 MIDDLEWARE = [
