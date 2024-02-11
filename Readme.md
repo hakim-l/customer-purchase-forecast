@@ -41,6 +41,19 @@
              ├── model.py│
              └── train.py
 ```
+# Model Development
+Model development is done in 4 phases:
+1. Data preprocessing (01-lukman-preprocess_data.ipynb) \
+   In this phase, issues in data format is fixed 
+    
+2. Data synthesize (02-lukman-synthesize_data.ipynb)\
+   In this phase, I generate generative model that is used to generate synthetic data
+
+3. Feature engineering (03-lukman-feature_engineering.ipynb)\
+   In this phase, I generate new features that will be used as target variable to be predicted and also new feature that will be used as predictor.
+
+4. Modelling (04-lukman-modelling.ipynb)\
+   In this phase, I build predictive model with MLP architecture.
 
 # Web application deployment 
 ## See deployed web application here: http://34.162.200.47:8000/
